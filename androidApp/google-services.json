@@ -1,0 +1,28 @@
+{
+  "project_info": {
+    "project_number": "211129191797",
+    "project_id": "helloworldkmm"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211129191797:android:bb683b9d6aafbe9549573c",
+        "android_client_info": {
+          "package_name": "com.bolla.helloworldkmm.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHwd1EqKnvPR6399RBi8I8VcehMKYthY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

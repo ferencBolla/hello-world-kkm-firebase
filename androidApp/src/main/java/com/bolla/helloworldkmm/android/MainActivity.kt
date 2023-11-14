@@ -1,9 +1,11 @@
 package com.bolla.helloworldkmm.android
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -11,6 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.bolla.helloworldkmm.Greeting
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +26,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GreetingView(Greeting().greet())
+                    Button(
+                        onClick = {
+                            testLogUsers()
+                        }) {
+                        Text(text = "Log users to console")
+                    }
                 }
             }
         }
@@ -38,5 +48,23 @@ fun GreetingView(text: String) {
 fun DefaultPreview() {
     MyApplicationTheme {
         GreetingView("Hello, Android!")
+    }
+}
+
+fun testLogUsers() {
+    try {
+        val db = Firebase.firestore
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
+                result.documents.forEach { user ->
+                    Log.d("AndroidUserRepository", "${user.id} => ${user.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("AndroidUserRepository", "Error getting documents.", exception)
+            }
+    } catch (exception: Exception) {
+        Log.e("AndroidUserRepository", "Could not get users from firestore", exception)
     }
 }

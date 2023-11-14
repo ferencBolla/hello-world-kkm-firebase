@@ -24,6 +24,12 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+
+        }
+        iosMain.dependencies {
+
+        }
         commonMain.dependencies {
             //put your multiplatform dependencies here
         }
